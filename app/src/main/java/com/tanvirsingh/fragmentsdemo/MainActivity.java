@@ -60,6 +60,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AsyncHttpClient client = new AsyncHttpClient();
         //client.setLoggingLevel(Log.ERROR);
 
+        //pusher
+        PusherOptions options = new PusherOptions();
+        options.setCluster("ap2");
+        Pusher pusher = new Pusher("87ded5c4cb1e22c46dd4", options);
+
+        Channel channel = pusher.subscribe("my-channel");
+
+        channel.bind("my-event", new SubscriptionEventListener() {
+            @Override
+            public void onEvent(String channelName, String eventName, final String data) {
+                System.out.println(data);
+            }
+        });
+
+        pusher.connect();
+
         client.post(MESSAGES_ENDPOINT + "/messages", params, new JsonHttpResponseHandler(){
 
             @Override

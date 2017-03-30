@@ -12,4 +12,3 @@ It is made for demonstrating a simple chat application with the following specif
 
 
 
-

@@ -1,5 +1,10 @@
 package com.tanvirsingh.fragmentsdemo;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +28,9 @@ import java.util.Date;
 import cz.msebera.android.httpclient.Header;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    NetworkChangeReceiver networkChangeReceiver = new NetworkChangeReceiver(this); //Passing context to non-activity class
 
     String username;
     EditText messageInput;
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void postMessage()  {
+    private void postMessage() {
         String text = messageInput.getText().toString();
 
         if (text.equals("")) {
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         pusher.connect();
 
-        client.post(MESSAGES_ENDPOINT + "/messages", params, new JsonHttpResponseHandler(){
+        client.post(MESSAGES_ENDPOINT + "/messages", params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -100,4 +107,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         postMessage();
     }
+
 }

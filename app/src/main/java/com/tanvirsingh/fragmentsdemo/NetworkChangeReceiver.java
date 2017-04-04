@@ -15,6 +15,8 @@ public class NetworkChangeReceiver extends BroadcastReceiver{
         int[] type = {ConnectivityManager.TYPE_MOBILE, ConnectivityManager.TYPE_WIFI};
         if (isNetworkAvailable(context) == true){
             //check for messages to be sent
+
+
             return;
         } else {
 

@@ -6,13 +6,13 @@ It is made for demonstrating a simple chat application with the following specif
 
  - POST to an API. Posts to [Fragments Backend](http://fragmentstanvir.azurewebsites.net/messages) (DONE)
  
- - When there is no network connection available, the app saves the message and its time to a database as POST request parameter. For example: text=hhhh&time=1491400605485
+ - When there is no network connection available, the app saves the message and its time to a database as POST request parameter. For example: text=hhhh&time=1491400605485 (DONE)
 
  -  When there's a network (Wifi or Mobile), the app receives a broadcast indicating the change in the network. (DONE) 
  
- - On receiving the broadcast, the app checks whether there are messages to be sent in the Database. 
+ - On receiving the broadcast, the app checks whether there are messages to be sent in the Database. (Functionality set, bugs)
  
- - If there are messages to be sent, then it sends the messages one by one.
+ - If there are messages to be sent, then it sends the messages one by one. (Functionality set, dependant on the previous bug to be solved to work)
 
 # Documentation
 

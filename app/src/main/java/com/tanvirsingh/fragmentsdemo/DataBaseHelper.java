@@ -11,10 +11,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "messages.db";
     public static final String TABLE_NAME = "kalol";
     public static final String COL_1 = "params";
+    SQLiteDatabase db;
+    private Context mContext;
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
-
+        mContext = context;
+        db = this.getWritableDatabase();
     }
 
     @Override
@@ -40,7 +43,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getAllData(){
-
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         return res;

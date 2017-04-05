@@ -1,6 +1,9 @@
 package com.tanvirsingh.fragmentsdemo;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -37,6 +40,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     DataBaseHelper myDB;
 
+//    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver()
+//    {
+//
+//        @Override
+//        public void onReceive(Context c, Intent i)
+//        {
+//            Log.i("onReceive", "onReceive");
+//        }
+//
+//    };
+
+//    private IntentFilter intentFilter = new IntentFilter(
+//            Intent.CONNECTIVITy);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +65,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sendButton = (Button) findViewById(R.id.send_button);
 
         sendButton.setOnClickListener(this);
+
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction("CONNECTIVITY_CHANGE");
+//
+//        receiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                Log.d(TAG,"Aa gaya receiver");
+//            }
+//        };
+//        registerReceiver(receiver, filter);
 
     }
 

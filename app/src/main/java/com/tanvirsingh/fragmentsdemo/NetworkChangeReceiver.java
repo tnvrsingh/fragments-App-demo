@@ -3,28 +3,68 @@ package com.tanvirsingh.fragmentsdemo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.widget.Toast;
+import com.loopj.android.http.RequestParams;
+
+import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class NetworkChangeReceiver extends BroadcastReceiver{
+
+    private static final String TAGNCR = "JSON";
+    // Handler used to execute code on the UI thread
+
+    public NetworkChangeReceiver() {
+
+    }
+
+    final String MESSAGES_ENDPOINT = "http://fragmentstanvir.azurewebsites.net";
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        int[] type = {ConnectivityManager.TYPE_MOBILE, ConnectivityManager.TYPE_WIFI};
+        //
+        // DataBaseHelper dataBaseHelper = new DataBaseHelper();
+
+        final RequestParams params = new RequestParams();
+
         if (isNetworkAvailable(context) == true){
-            //check for messages to be sent
+            //CALL METHOD FROM sendMessageFromDatabase
+            Handler handler = new Handler(Looper.getMainLooper());
+
+            sendMessageFromDatabase sendMessageFromDatabaseOBJECT = new sendMessageFromDatabase(handler);
 
 
             return;
+
         } else {
 
         }
     }
 
+        public static String[] toStringArr(StringBuffer[] sb) {
+            if (sb == null) return null;
+            String str[] = new String[sb.length];
+            for (int i = 0; i < sb.length; i++) {
+                if (sb[i] != null) {
+                    str[i] = sb[i].toString();
+                }
+            }
+            return str;
+        }
+
+
+
     //function to check if internet is available
-    private boolean isNetworkAvailable(Context context){
+    private static boolean isNetworkAvailable(Context context){
         try{
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -49,4 +89,3 @@ public class NetworkChangeReceiver extends BroadcastReceiver{
         return false;
     }
 }
-
